@@ -53,10 +53,10 @@ public class AddBookActivity extends AppCompatActivity implements
     public void onClick(View view) {
         // Get user input
         String name = mNameEditText.getText().toString();
-        int isbn = Integer.parseInt(mISBNEditText.getText().toString());
+        String isbn = mISBNEditText.getText().toString();
         String author = mAuthorEditText.getText().toString();
         String publisher = mPublisherEditText.getText().toString();
-        int edition = Integer.parseInt(mEditionEditText.getText().toString());
+        String edition = mEditionEditText.getText().toString();
         int year = Integer.parseInt(mYearEditText.getText().toString());
         String genre = mGenreEditText.getText().toString();
         String desc = mDescEditText.getText().toString();

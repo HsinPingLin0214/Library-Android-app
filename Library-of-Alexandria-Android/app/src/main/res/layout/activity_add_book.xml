@@ -26,6 +26,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
@@ -85,7 +86,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Publisher:"
-        app:layout_constraintEnd_toStartOf="@+id/genreTextView"
+        app:layout_constraintEnd_toStartOf="@+id/genreDisplayTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/authorEditText" />
 
@@ -113,7 +114,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Edition:"
-        app:layout_constraintEnd_toStartOf="@+id/yearTextView"
+        app:layout_constraintEnd_toStartOf="@+id/yearDisplayTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/publisherEditText" />
 
@@ -142,7 +143,7 @@
         android:layout_marginTop="8dp"
         android:text="Year of publication:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editionTextView"
+        app:layout_constraintStart_toEndOf="@+id/editionDisplayTextView"
         app:layout_constraintTop_toBottomOf="@+id/genreEditText" />
 
     <EditText
@@ -170,7 +171,7 @@
         android:layout_marginTop="8dp"
         android:text="Genre:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/publisherTextView"
+        app:layout_constraintStart_toEndOf="@+id/publisherDisplayTextView"
         app:layout_constraintTop_toBottomOf="@+id/authorEditText" />
 
     <EditText
