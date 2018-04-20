@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity implements
     private Button mAddBookBtn;
     private Button mSearchBtn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +27,26 @@ public class MainActivity extends AppCompatActivity implements
         mSearchBtn = (Button) findViewById(R.id.searchBtn);
 
         // Set onClick Listener
-        mAddBookBtn.setOnClickListener(this);
-        mSearchBtn.setOnClickListener(this);
+        //mAddBookBtn.setOnClickListener(this);
+        //mSearchBtn.setOnClickListener(this);
+
+        mAddBookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AddBookActivity.class));
+            }
+        });
+
+        mSearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements
                         .setAction("Action", null).show();
             }
         });
-        */
     }
 
 
@@ -73,22 +85,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
 
-        switch (v.getId()) {
-
-            case R.id.addBookBtn:
-                // do your code
-                Intent myIntent = new Intent(this, AddBookActivity.class);
-                //myIntent.putExtra("key", value); //Optional parameters
-                startActivity(myIntent);
-                break;
-
-            case R.id.searchBtn:
-                Intent myIntent2 = new Intent(this, SearchActivity.class);
-                //myIntent.putExtra("key", value); //Optional parameters
-                startActivity(myIntent2);
-                break;
-        }
     }
 }
