@@ -1,22 +1,33 @@
 package com.example.jenna.library_of_alexandria_android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import models.Book;
+import models.DatabaseHelper;
 
 import java.util.ArrayList;
 
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity{
+
+    //implements AdapterView.OnItemLongClickListener
+
+    // Unique Identifier for receiving activity result
+    public static final int ADD_BOOK_REQUEST = 1;
 
     private ListView mListView;
     private BookAdapter mAdapter;
     private ArrayList<Book> mBookList;
+    private DatabaseHelper mDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +37,19 @@ public class SearchActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Initialize the Person List
-        mBookList = new ArrayList<>();
+        // Get our database handler
+        mDBHelper = new DatabaseHelper(getApplicationContext());
+
+        // Initialize the Book List with the values from our database
+        mBookList = new ArrayList<>(mDBHelper.getAllBooks().values());
+
         //initializeDefaultList();
         mListView = (ListView) findViewById(R.id.bookListView);
-        // Create Adapter and associate it with our PersonList
+
+        // Create Adapter and associate it with our BookList
         mAdapter = new BookAdapter(this, mBookList);
-        mListView.setAdapter(mAdapter); 
+        mListView.setAdapter(mAdapter);
+        //mListView.setOnItemLongClickListener(this);
         updateListCount();
     }
 
@@ -71,4 +88,52 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setSupportActionBar(Toolbar toolbar) {
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if(requestCode == ADD_BOOK_REQUEST) {
+//            if(resultCode == RESULT_OK){
+//                boolean canAddBook = true;
+//
+//                //Get the book object from the intent
+//                Book newBook = data.getParcelableExtra("result");
+//
+//                //Check if book already exists (By ISBN)
+//                for (Book book: mBookList){
+//                    if(newBook.getmISBN().equals(book.getmISBN())){
+//                        Toast.makeText(SearchActivity.this,
+//                                "Book already exists in database",
+//                                Toast.LENGTH_SHORT).show();
+//                        canAddBook = false;
+//                    }
+//                }
+//
+//                //If book does not exist then add it
+//                if(canAddBook){
+//                    mDBHelper.addBook(newBook);
+//                    mBookList.add(newBook);
+//                    refreshListView();
+//                    Toast.makeText(SearchActivity.this,
+//                            "Book has been added!",
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        }
+//    }
+
+    private void refreshListView() {
+        mAdapter.notifyDataSetChanged();
+        updateListCount();
+    }
+
+
+//    @Override
+//    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//        //Build a dialog to delete item
+//
+//        return false;
+//    }
 }

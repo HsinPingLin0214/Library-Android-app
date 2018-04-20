@@ -11,7 +11,7 @@ import android.os.Parcelable;
 @SuppressLint("ParcelCreator")
 public class Book implements Parcelable {
     // Database Constants
-    public static final String TABLE_NAME = "book";
+    public static final String TABLE_NAME = "books";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_ISBN = "isbn";
@@ -28,7 +28,7 @@ public class Book implements Parcelable {
             + TABLE_NAME + "(" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             COLUMN_NAME + " TEXT NOT NULL, " +
-            COLUMN_ISBN + " TEXT NOT NULL," +
+            COLUMN_ISBN + " TEXT NOT NULL" +
             COLUMN_AUTHOR +
             COLUMN_PUBLISHER +
             COLUMN_EDITION +
@@ -36,7 +36,7 @@ public class Book implements Parcelable {
             COLUMN_GENRE +
             COLUMN_DESC +
             ")";
-    private static long _id;
+    private long _id;
     private String mName;
     private String mISBN;
     private String mAuthor;
@@ -59,14 +59,14 @@ public class Book implements Parcelable {
 
     public Book(long id, String name, String isbn, String author, String publisher, String edition, int year, String genre, String desc) {
         this._id = id;
-        mName = name;
-        mISBN = isbn;
-        mAuthor = author;
-        mPublisher = publisher;
-        mEdition = edition;
-        mYear = year;
-        mGenre = genre;
-        mDesc = desc;
+        this.mName = name;
+        this.mISBN = isbn;
+        this.mAuthor = author;
+        this.mPublisher = publisher;
+        this.mEdition = edition;
+        this.mYear = year;
+        this.mGenre = genre;
+        this.mDesc = desc;
     }
 
     protected Book(Parcel in) {
@@ -93,7 +93,27 @@ public class Book implements Parcelable {
         }
     };
 
-    public static long getId() {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(_id);
+        dest.writeString(mName);
+        dest.writeString(mISBN);
+        dest.writeString(mAuthor);
+        dest.writeString(mPublisher);
+        dest.writeString(mEdition);
+        dest.writeInt(mYear);
+        dest.writeString(mGenre);
+        dest.writeString(mDesc);
+    }
+
+
+
+    public long getId() {
         return _id;
     }
     public String getmName() {return mName;}
@@ -104,6 +124,7 @@ public class Book implements Parcelable {
     public int getmYear() {return mYear;}
     public String getmGenre() {return mGenre;}
     public String getmDesc() {return mDesc;}
+
 
     public void setId(long _id) {
         this._id = _id;
@@ -119,22 +140,5 @@ public class Book implements Parcelable {
 
     public String bookSummary() {
         return "Book name: " + mName + ". ISBN: " + mISBN + ". Author: " + mAuthor + ". Publisher: " + mPublisher + ". Edition: " + mEdition + ". Year: " + mYear + ". Genre: " + mGenre + ". Description: " + mDesc;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeString(mISBN);
-        dest.writeString(mAuthor);
-        dest.writeString(mPublisher);
-        dest.writeString(mEdition);
-        dest.writeInt(mYear);
-        dest.writeString(mGenre);
-        dest.writeString(mDesc);
     }
 }

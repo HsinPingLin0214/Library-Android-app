@@ -16,10 +16,12 @@ public class BookAdapter extends BaseAdapter {
 
     private Context mCurrentContext;
     private ArrayList<Book> mBookList;
-    public BookAdapter(Context con, ArrayList<Book> book) {
+
+    public BookAdapter(Context con, ArrayList<Book> books) {
         mCurrentContext = con;
-        mBookList = book;
+        mBookList = books;
     }
+
     @Override
     public int getCount() {
         return mBookList.size();
@@ -44,11 +46,11 @@ public class BookAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.list_book_item, null);
         }
 
-        // Assign values to the TextViews using Person Object
+        // Assign values to the TextViews using Book Object
         TextView nameView = (TextView) view.findViewById(R.id.listNameTextView);
-        TextView continentView = (TextView) view.findViewById(R.id.listAuthorTextView);
+        TextView authorView = (TextView) view.findViewById(R.id.listAuthorTextView);
         nameView.setText(mBookList.get(position).getmName());
-        continentView.setText(mBookList.get(position).getmAuthor());
+        authorView.setText(mBookList.get(position).getmAuthor());
 
         return view;
     }

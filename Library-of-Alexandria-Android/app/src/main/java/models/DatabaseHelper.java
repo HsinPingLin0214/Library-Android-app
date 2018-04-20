@@ -83,7 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Book.TABLE_NAME,
                 Book.COLUMN_ID + " = ?",
-                new String[] {String.valueOf(Book.getId())});
+                new String[] {String.valueOf(book.getId())});
     }
 
     private void createDefaultBooks() {
