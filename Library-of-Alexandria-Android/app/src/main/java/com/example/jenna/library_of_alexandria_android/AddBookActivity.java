@@ -61,66 +61,16 @@ public class AddBookActivity extends AppCompatActivity implements
         switch (view.getId()){
 
             case R.id.createBtn:
-                // Get user input
-                String name = mNameEditText.getText().toString();
-                String isbn = mISBNEditText.getText().toString();
-
-                if(name.length() > 0 && isbn.length()>0){
-                    //String author = mAuthorEditText.getText().toString() || "";
-
-                    if(mAuthorEditText.length() == 0) {
-                        String author = "" ;
-                        String publisher = "" ;
-                        String edition = "" ;
-                        int year = 0 ;
-                        String genre = "" ;
-                        String desc = "" ;
-                        Book newBook = new Book(0, name, isbn, author, publisher, edition, year, genre, desc);
-
-                        // Create new intent, pass information & finish
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.putExtra("result", newBook);
-                        setResult(RESULT_OK, intent);
-                        finish();
-
-                    } else {
-                        String author = mAuthorEditText.getText().toString();
-                        String publisher = mPublisherEditText.getText().toString();
-                        String edition = mEditionEditText.getText().toString();
-                        int year = Integer.parseInt(mYearEditText.getText().toString());
-                        String genre = mGenreEditText.getText().toString();
-                        String desc = mDescEditText.getText().toString();
-
-                        Book newBook = new Book(0, name, isbn, author, publisher, edition, year, genre, desc);
-
-                        // Create new intent, pass information & finish
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.putExtra("result", newBook);
-                        setResult(RESULT_OK, intent);
-                        finish();
-                    }
-                } else {
-                    AlertDialog.Builder builder
-                            = new AlertDialog.Builder(AddBookActivity.this);
-                    builder.setTitle("Input Request");
-                    builder.setMessage("Book name and ISBN cannot be empty.");
-                    builder.setPositiveButton("Ok", null);
-                    builder.show();
-
-                }
-
+                createNewBook();
                 break;
 
             case R.id.updateBtn:
-
+                updateBook();
                 break;
 
             default:
                 break;
         }
-
-
-
 //        // Run Validation before creating jedi object
 //        // Set Jedi to contain user input
 //        mNewBook = new Book();
@@ -138,5 +88,105 @@ public class AddBookActivity extends AppCompatActivity implements
 //        Intent newIntent = new Intent(this, AddBookActivity.class);
 //        newIntent.putExtra("Book", String.valueOf(mNewBook));
 //        startActivity(newIntent);
+    }
+
+    public void createNewBook() {
+        // Get user input
+        String name = mNameEditText.getText().toString();
+        String isbn = mISBNEditText.getText().toString();
+
+        if(name.length() > 0 && isbn.length()>0){
+            //String author = mAuthorEditText.getText().toString() || "";
+
+            if(mAuthorEditText.length() == 0) {
+                String author = "" ;
+                String publisher = "" ;
+                String edition = "" ;
+                int year = 0 ;
+                String genre = "" ;
+                String desc = "" ;
+                Book newBook = new Book(0, name, isbn, author, publisher, edition, year, genre, desc);
+
+                // Create new intent, pass information & finish
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("result", newBook);
+                setResult(RESULT_OK, intent);
+                finish();
+
+            } else {
+                String author = mAuthorEditText.getText().toString();
+                String publisher = mPublisherEditText.getText().toString();
+                String edition = mEditionEditText.getText().toString();
+                int year = Integer.parseInt(mYearEditText.getText().toString());
+                String genre = mGenreEditText.getText().toString();
+                String desc = mDescEditText.getText().toString();
+
+                Book newBook = new Book(0, name, isbn, author, publisher, edition, year, genre, desc);
+
+                // Create new intent, pass information & finish
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("result", newBook);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        } else {
+            AlertDialog.Builder builder
+                    = new AlertDialog.Builder(AddBookActivity.this);
+            builder.setTitle("Input Request");
+            builder.setMessage("Book name and ISBN cannot be empty.");
+            builder.setPositiveButton("Ok", null);
+            builder.show();
+
+        }
+    }
+
+    public void updateBook() {
+        // Get user input
+        String name = mNameEditText.getText().toString();
+        String isbn = mISBNEditText.getText().toString();
+
+        if(name.length() > 0 && isbn.length()>0){
+            //String author = mAuthorEditText.getText().toString() || "";
+
+            if(mAuthorEditText.length() == 0) {
+                String author = "" ;
+                String publisher = "" ;
+                String edition = "" ;
+                int year = 0 ;
+                String genre = "" ;
+                String desc = "" ;
+                Book newBook = new Book(0, name, isbn, author, publisher, edition, year, genre, desc);
+
+                // Create new intent, pass information & finish
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("result", newBook);
+                setResult(RESULT_OK, intent);
+                finish();
+
+            } else {
+                String author = mAuthorEditText.getText().toString();
+                String publisher = mPublisherEditText.getText().toString();
+                String edition = mEditionEditText.getText().toString();
+                int year = Integer.parseInt(mYearEditText.getText().toString());
+                String genre = mGenreEditText.getText().toString();
+                String desc = mDescEditText.getText().toString();
+
+                Book newBook = new Book(0, name, isbn, author, publisher, edition, year, genre, desc);
+
+                // Create new intent, pass information & finish
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("result", newBook);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        } else {
+            AlertDialog.Builder builder
+                    = new AlertDialog.Builder(AddBookActivity.this);
+            builder.setTitle("Input Request");
+            builder.setMessage("Book name and ISBN cannot be empty.");
+            builder.setPositiveButton("Ok", null);
+            builder.show();
+
+        }
     }
 }
