@@ -1,4 +1,4 @@
-package com.example.jenna.library_of_alexandria_android;
+package models;
 
 import android.annotation.SuppressLint;
 import android.os.Parcel;
@@ -10,6 +10,33 @@ import android.os.Parcelable;
 
 @SuppressLint("ParcelCreator")
 public class Book implements Parcelable {
+    // Database Constants
+    public static final String TABLE_NAME = "book";
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_ISBN = "isbn";
+    public static final String COLUMN_AUTHOR = "author";
+    public static final String COLUMN_PUBLISHER = "publisher";
+    public static final String COLUMN_EDITION = "edition";
+    public static final int COLUMN_YEAR = 0000;
+    public static final String COLUMN_GENRE = "genre";
+    public static final String COLUMN_DESC = "desc";
+
+
+    // Table create statement
+    public static final String CREATE_STATEMENT = "CREATE TABLE "
+            + TABLE_NAME + "(" +
+            COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            COLUMN_NAME + " TEXT NOT NULL, " +
+            COLUMN_ISBN + " TEXT NOT NULL," +
+            COLUMN_AUTHOR +
+            COLUMN_PUBLISHER +
+            COLUMN_EDITION +
+            COLUMN_YEAR +
+            COLUMN_GENRE +
+            COLUMN_DESC +
+            ")";
+    private static long _id;
     private String mName;
     private String mISBN;
     private String mAuthor;
@@ -30,7 +57,8 @@ public class Book implements Parcelable {
         mDesc = "Description";
     }
 
-    public Book(String name, String isbn, String author, String publisher, String edition, int year, String genre, String desc) {
+    public Book(long id, String name, String isbn, String author, String publisher, String edition, int year, String genre, String desc) {
+        this._id = id;
         mName = name;
         mISBN = isbn;
         mAuthor = author;
@@ -42,6 +70,7 @@ public class Book implements Parcelable {
     }
 
     protected Book(Parcel in) {
+        _id = in.readLong();
         mName = in.readString();
         mISBN = in.readString();
         mAuthor = in.readString();
@@ -64,6 +93,9 @@ public class Book implements Parcelable {
         }
     };
 
+    public static long getId() {
+        return _id;
+    }
     public String getmName() {return mName;}
     public String getmISBN() {return mISBN;}
     public String getmAuthor() {return mAuthor;}
@@ -73,6 +105,9 @@ public class Book implements Parcelable {
     public String getmGenre() {return mGenre;}
     public String getmDesc() {return mDesc;}
 
+    public void setId(long _id) {
+        this._id = _id;
+    }
     public void setmName(String name) {mName = name;}
     public void setmISBN(String isbn) {mISBN =isbn;}
     public void setmAuthor(String author) {mAuthor = author;}
