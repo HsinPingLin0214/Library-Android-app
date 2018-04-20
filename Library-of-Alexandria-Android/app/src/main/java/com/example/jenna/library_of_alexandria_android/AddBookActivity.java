@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import models.Book;
+
 public class AddBookActivity extends AppCompatActivity implements
         View.OnClickListener{
 

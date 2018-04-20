@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import models.Book;
+
 public class BookDetailsActivity extends AppCompatActivity {
 
     Book mBook;
