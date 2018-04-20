@@ -1,10 +1,15 @@
 package com.example.jenna.library_of_alexandria_android;
 
+import android.annotation.SuppressLint;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by jenna on 9/4/18.
  */
 
-public class Book {
+@SuppressLint("ParcelCreator")
+public class Book implements Parcelable {
     private String mName;
     private String mISBN;
     private String mAuthor;
@@ -36,6 +41,29 @@ public class Book {
         mDesc = desc;
     }
 
+    protected Book(Parcel in) {
+        mName = in.readString();
+        mISBN = in.readString();
+        mAuthor = in.readString();
+        mPublisher = in.readString();
+        mEdition = in.readString();
+        mYear = in.readInt();
+        mGenre = in.readString();
+        mDesc = in.readString();
+    }
+
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
+        @Override
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        @Override
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
+
     public String getmName() {return mName;}
     public String getmISBN() {return mISBN;}
     public String getmAuthor() {return mAuthor;}
@@ -56,5 +84,22 @@ public class Book {
 
     public String bookSummary() {
         return "Book name: " + mName + ". ISBN: " + mISBN + ". Author: " + mAuthor + ". Publisher: " + mPublisher + ". Edition: " + mEdition + ". Year: " + mYear + ". Genre: " + mGenre + ". Description: " + mDesc;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mName);
+        dest.writeString(mISBN);
+        dest.writeString(mAuthor);
+        dest.writeString(mPublisher);
+        dest.writeString(mEdition);
+        dest.writeInt(mYear);
+        dest.writeString(mGenre);
+        dest.writeString(mDesc);
     }
 }
