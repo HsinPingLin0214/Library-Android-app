@@ -40,6 +40,8 @@ public class AddBookActivity extends AppCompatActivity implements
         mYearEditText = (EditText) findViewById(R.id.yearEditText);
         mGenreEditText = (EditText) findViewById(R.id.genreEditText);
         mDescEditText = (EditText) findViewById(R.id.descEditText);
+        mCreateBtn = (Button) findViewById(R.id.createBtn);
+        mUpdateBtn = (Button) findViewById(R.id.updateBtn);
 
         // Set onClick Listener for Jedi button
         mCreateBtn.setOnClickListener(this);

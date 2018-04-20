@@ -6,11 +6,4 @@
     android:layout_height="match_parent"
     tools:context="com.example.jenna.library_of_alexandria_android.SearchActivity">
 
-    <ListView
-        android:id="@+id/bookListView"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
