@@ -9,9 +9,14 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import java.util.ArrayList;
+
 import models.Book;
+import models.DatabaseHelper;
 
 public class BookDetailsActivity extends AppCompatActivity {
+
+    private DatabaseHelper mDBHelper;
 
     Book mBook;
 
@@ -24,6 +29,9 @@ public class BookDetailsActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Get our database handler
+        mDBHelper = new DatabaseHelper(getApplicationContext());
 
         Intent intent = getIntent();
         mBook = intent.getParcelableExtra("Book");

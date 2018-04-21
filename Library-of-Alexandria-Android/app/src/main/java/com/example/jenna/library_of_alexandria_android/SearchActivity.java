@@ -87,8 +87,7 @@ public class SearchActivity extends AppCompatActivity {
                 Book newBook = data.getParcelableExtra("result");
 
                 mBookList.add(newBook);
-                mAdapter.notifyDataSetChanged();
-                updateListCount();
+                refreshListView();
 
                 //Check if book already exists (By ISBN)
 //                for (Book book: mBookList){

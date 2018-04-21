@@ -90,6 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         addBook(new Book(1, "Harry Potter: The Philosopher's Stone", "0-7475-3269-9", "J.K. Rowling", "Bloomsbury UK", "332 UK", 1997, "Fantasy", "It's a story around Harry who ..."));
         addBook(new Book(2, "Harry Potter: The Chamber of Secrets", "0-7475-3849-2", "J.K. Rowling", "Bloomsbury UK", "435 UK", 1998, "Fantasy", "It's a story around Harry who ..."));
         addBook(new Book(3, "Harry Potter: The Prisoner of Azkaban", "0-7475-4215-5", "J.K. Rowling", "Bloomsbury UK", "562 UK", 1999, "Fantasy", "It's a story around Harry who ..."));
+        addBook(new Book(4, "Clearing Emotional Clutter", "1-6086-8364-8", "Altman Donald", "New World Library", "562 UK", 2016, "Self-help book", "Clearing Emotional Clutter: Mindfulness Practices for Letting Go of What's Blocking Your Fulfillment and Transformation."));
     }
 
 }

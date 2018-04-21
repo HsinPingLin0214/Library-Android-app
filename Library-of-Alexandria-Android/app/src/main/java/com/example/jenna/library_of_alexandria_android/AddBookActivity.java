@@ -12,9 +12,12 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 import models.Book;
+import models.DatabaseHelper;
 
 public class AddBookActivity extends AppCompatActivity implements
         View.OnClickListener{
+
+    private DatabaseHelper mDBHelper;
 
     EditText mNameEditText;
     EditText mISBNEditText;
@@ -37,6 +40,9 @@ public class AddBookActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
 
+        // Get our database handler
+        mDBHelper = new DatabaseHelper(getApplicationContext());
+
         // Instantiate UI elements
         mNameEditText = (EditText) findViewById(R.id.nameEditText);
         mISBNEditText = (EditText) findViewById(R.id.isbnEditText);
@@ -46,13 +52,20 @@ public class AddBookActivity extends AppCompatActivity implements
         mYearEditText = (EditText) findViewById(R.id.yearEditText);
         mGenreEditText = (EditText) findViewById(R.id.genreEditText);
         mDescEditText = (EditText) findViewById(R.id.descEditText);
-        mCreateBtn = (Button) findViewById(R.id.createBtn);
-        mUpdateBtn = (Button) findViewById(R.id.updateBtn);
 
-        // Set onClick Listener for Jedi button
+        mCreateBtn = (Button) findViewById(R.id.createBtn);
         mCreateBtn.setOnClickListener(this);
+
+        mUpdateBtn = (Button) findViewById(R.id.updateBtn);
         mUpdateBtn.setOnClickListener(this);
 
+        if(mISBNEditText.length() == 0){
+            //Create new book
+            mUpdateBtn.setVisibility(View.GONE);
+        } else {
+            //Update a book details
+            mCreateBtn.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -107,9 +120,12 @@ public class AddBookActivity extends AppCompatActivity implements
                 String desc = "" ;
                 Book newBook = new Book(0, name, isbn, author, publisher, edition, year, genre, desc);
 
+                //Update to database
+                mDBHelper.addBook(newBook);
+
                 // Create new intent, pass information & finish
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("result", newBook);
+                //intent.putExtra("result", newBook);
                 setResult(RESULT_OK, intent);
                 finish();
 
@@ -123,9 +139,12 @@ public class AddBookActivity extends AppCompatActivity implements
 
                 Book newBook = new Book(0, name, isbn, author, publisher, edition, year, genre, desc);
 
+                //Update to database
+                mDBHelper.addBook(newBook);
+
                 // Create new intent, pass information & finish
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("result", newBook);
+                //intent.putExtra("result", newBook);
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -148,7 +167,7 @@ public class AddBookActivity extends AppCompatActivity implements
         if(name.length() > 0 && isbn.length()>0){
             //String author = mAuthorEditText.getText().toString() || "";
 
-            if(mAuthorEditText.length() == 0) {
+            if(mAuthorEditText.length() == 0 || mPublisherEditText.length() == 0 || mEditionEditText.length() == 0 || mYearEditText.length() == 0 || mGenreEditText.length() == 0 || mDescEditText.length() == 0) {
                 String author = "" ;
                 String publisher = "" ;
                 String edition = "" ;
@@ -159,7 +178,7 @@ public class AddBookActivity extends AppCompatActivity implements
 
                 // Create new intent, pass information & finish
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("result", newBook);
+                // intent.putExtra("result", newBook);
                 setResult(RESULT_OK, intent);
                 finish();
 
