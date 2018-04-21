@@ -50,7 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public HashMap<Long, Book> getAllBooks() {
-        HashMap<Long, Book> books = new LinkedHashMap<>();
+        HashMap<Long, Book> bookdblist = new LinkedHashMap<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + Book.TABLE_NAME, null);
@@ -65,17 +65,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getInt(6),
                     cursor.getString(7),
                     cursor.getString(8));
-            books.put(book.getId(), book);
+            bookdblist.put(book.getId(), book);
         }
         cursor.close();
         db.close();
 
-        if(books.size() == 0) {
+        if(bookdblist.size() == 0) {
             // If there are no book in the db then add some default book
             createDefaultBooks();
-            books = getAllBooks();
+            bookdblist = getAllBooks();
         }
-        return books;
+        return bookdblist;
     }
 
     public void removeBook(Book book)

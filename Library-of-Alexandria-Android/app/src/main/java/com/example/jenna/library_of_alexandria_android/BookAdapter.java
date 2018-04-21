@@ -17,9 +17,9 @@ public class BookAdapter extends BaseAdapter {
     private Context mCurrentContext;
     private ArrayList<Book> mBookList;
 
-    public BookAdapter(Context con, ArrayList<Book> books) {
+    public BookAdapter(Context con, ArrayList<Book> bookdblist) {
         mCurrentContext = con;
-        mBookList = books;
+        mBookList = bookdblist;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class BookAdapter extends BaseAdapter {
         return view;
     }
 
-    @Nullable
+    //@Nullable
     @Override
     public CharSequence[] getAutofillOptions() {
         return new CharSequence[0];

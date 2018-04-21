@@ -46,6 +46,18 @@ public class Book implements Parcelable {
     private String mGenre;
     private String mDesc;
 
+    protected Book(Parcel in) {
+        _id = in.readLong();
+        mName = in.readString();
+        mISBN = in.readString();
+        mAuthor = in.readString();
+        mPublisher = in.readString();
+        mEdition = in.readString();
+        mYear = in.readInt();
+        mGenre = in.readString();
+        mDesc = in.readString();
+    }
+
     public Book() {
         mName = "Book name";
         mISBN = "ISBN";
@@ -67,18 +79,6 @@ public class Book implements Parcelable {
         this.mYear = year;
         this.mGenre = genre;
         this.mDesc = desc;
-    }
-
-    protected Book(Parcel in) {
-        _id = in.readLong();
-        mName = in.readString();
-        mISBN = in.readString();
-        mAuthor = in.readString();
-        mPublisher = in.readString();
-        mEdition = in.readString();
-        mYear = in.readInt();
-        mGenre = in.readString();
-        mDesc = in.readString();
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {
@@ -111,8 +111,6 @@ public class Book implements Parcelable {
         dest.writeString(mDesc);
     }
 
-
-
     public long getId() {
         return _id;
     }
@@ -124,7 +122,6 @@ public class Book implements Parcelable {
     public int getmYear() {return mYear;}
     public String getmGenre() {return mGenre;}
     public String getmDesc() {return mDesc;}
-
 
     public void setId(long _id) {
         this._id = _id;
