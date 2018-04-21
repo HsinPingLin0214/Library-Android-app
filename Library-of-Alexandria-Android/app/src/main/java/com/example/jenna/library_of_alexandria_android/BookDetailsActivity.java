@@ -2,6 +2,7 @@ package com.example.jenna.library_of_alexandria_android;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import models.DatabaseHelper;
 public class BookDetailsActivity extends AppCompatActivity {
 
     private DatabaseHelper mDBHelper;
+    private
 
     Book mBook;
 
@@ -33,8 +35,16 @@ public class BookDetailsActivity extends AppCompatActivity {
         // Get our database handler
         mDBHelper = new DatabaseHelper(getApplicationContext());
 
+
+
         Intent intent = getIntent();
-        mBook = intent.getParcelableExtra("Book");
+//        String index = intent.getParcelableExtra("BookDetails");
+//        String index = intent.getStringExtra("BookDetails");
+//        mBook = new Book(mDBHelper.getBook().values())
+
+        // To do: How to get book index and book detail on this screen?
+
+        mBook = intent.getParcelableExtra("BookDetails");
         TextView nameView = (TextView) findViewById(R.id.nameDisplayTextView);
         nameView.setText(mBook.toString());
 

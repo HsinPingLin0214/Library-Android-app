@@ -22,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(Book.CREATE_STATEMENT);
@@ -92,5 +93,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         addBook(new Book(3, "Harry Potter: The Prisoner of Azkaban", "0-7475-4215-5", "J.K. Rowling", "Bloomsbury UK", "562 UK", 1999, "Fantasy", "It's a story around Harry who ..."));
         addBook(new Book(4, "Clearing Emotional Clutter", "1-6086-8364-8", "Altman Donald", "New World Library", "562 UK", 2016, "Self-help book", "Clearing Emotional Clutter: Mindfulness Practices for Letting Go of What's Blocking Your Fulfillment and Transformation."));
     }
+
+//    public displayBook(int index) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        // Get the cursor from a database query
+//        Cursor cursor = db.rawQuery("SELECT * FROM CUSTOMER", null);
+//        // Move to first row
+//        cursor.moveToPosition(index);
+//        // Grab row column values based on column pattern
+//        long _id = Long.parseLong(cursor.getString(1));
+//        String name = cursor.getString(1);
+//        String isbn = cursor.getString(2);
+//        String author = cursor.getString(3);
+//        String publisher = cursor.getString(4);
+//        String edition = cursor.getString(5);
+//        int year = Integer.parseInt(cursor.getString(6));
+//        String genre = cursor.getString(7);
+//        String desc = cursor.getString(8);
+//
+//        Book newBook = new Book(_id, name, isbn, author, publisher, edition, year, genre, desc);
+//
+//        return newBook;
+//    }
+
+//    public displayBook get(long id) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        if (db == null) {
+//            return null;
+//        }
+//        ContentValues row = new ContentValues();
+//        Cursor cur = db.rawQuery("select * from todos where _id = ?", new String[] { String.valueOf(id) });
+//        if (cur.moveToNext()) {
+//            row.put("name", cur.getString(0));
+//            row.put("priority", cur.getInt(1));
+//        }
+//        cur.close();
+//        db.close();
+//        return row;
+//    }
+
+//    public getBook(long id){
+//        return book;
+//    }
 
 }

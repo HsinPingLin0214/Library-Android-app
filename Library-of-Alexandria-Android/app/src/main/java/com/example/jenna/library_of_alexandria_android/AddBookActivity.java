@@ -7,10 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-
 import java.util.ArrayList;
-
 import models.Book;
 import models.DatabaseHelper;
 

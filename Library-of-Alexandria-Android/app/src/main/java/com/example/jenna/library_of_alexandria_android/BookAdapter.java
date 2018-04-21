@@ -55,7 +55,7 @@ public class BookAdapter extends BaseAdapter {
         return view;
     }
 
-    //@Nullable
+    @Nullable
     @Override
     public CharSequence[] getAutofillOptions() {
         return new CharSequence[0];
