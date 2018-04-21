@@ -27,7 +27,7 @@ public class SearchActivity extends AppCompatActivity {
     private ListView mListView;
     private BookAdapter mAdapter;
     private ArrayList<Book> mBookList;
-//    private DatabaseHelper mDBHelper;
+    private DatabaseHelper mDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +38,13 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Get our database handler
-//        mDBHelper = new DatabaseHelper(getApplicationContext());
+        mDBHelper = new DatabaseHelper(getApplicationContext());
 
         // Initialize the Book List with the values from our database
-//        mBookList = new ArrayList<>(mDBHelper.getAllBooks().values());
+        mBookList = new ArrayList<>(mDBHelper.getAllBooks().values());
+//        mBookList = new ArrayList<>();
 
-        mBookList = new ArrayList<>();
-        initializeDefaultList();
+//        initializeDefaultList();
         mListView = (ListView) findViewById(R.id.bookListView);
 
         // Create Adapter and associate it with our BookList

@@ -98,7 +98,7 @@ public class AddBookActivity extends AppCompatActivity implements
         if(name.length() > 0 && isbn.length()>0){
             //String author = mAuthorEditText.getText().toString() || "";
 
-            if(mAuthorEditText.length() == 0) {
+            if(mAuthorEditText.length() == 0 || mPublisherEditText.length() == 0 || mEditionEditText.length() == 0 || mYearEditText.length() == 0 || mGenreEditText.length() == 0 || mDescEditText.length() == 0) {
                 String author = "" ;
                 String publisher = "" ;
                 String edition = "" ;

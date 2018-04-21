@@ -18,7 +18,7 @@ public class Book implements Parcelable {
     public static final String COLUMN_AUTHOR = "author";
     public static final String COLUMN_PUBLISHER = "publisher";
     public static final String COLUMN_EDITION = "edition";
-    public static final int COLUMN_YEAR = 0000;
+    public static final String COLUMN_YEAR = "year";
     public static final String COLUMN_GENRE = "genre";
     public static final String COLUMN_DESC = "desc";
 
@@ -28,13 +28,13 @@ public class Book implements Parcelable {
             + TABLE_NAME + "(" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             COLUMN_NAME + " TEXT NOT NULL, " +
-            COLUMN_ISBN + " TEXT NOT NULL" +
-            COLUMN_AUTHOR +
-            COLUMN_PUBLISHER +
-            COLUMN_EDITION +
-            COLUMN_YEAR +
-            COLUMN_GENRE +
-            COLUMN_DESC +
+            COLUMN_ISBN + " TEXT NOT NULL, " +
+            COLUMN_AUTHOR + " TEXT, " +
+            COLUMN_PUBLISHER + " TEXT, " +
+            COLUMN_EDITION + " TEXT, " +
+            COLUMN_YEAR + " TEXT, " +
+            COLUMN_GENRE + " TEXT, " +
+            COLUMN_DESC + " TEXT " +
             ")";
     private long _id;
     private String mName;
@@ -45,18 +45,6 @@ public class Book implements Parcelable {
     private int mYear;
     private String mGenre;
     private String mDesc;
-
-    protected Book(Parcel in) {
-        _id = in.readLong();
-        mName = in.readString();
-        mISBN = in.readString();
-        mAuthor = in.readString();
-        mPublisher = in.readString();
-        mEdition = in.readString();
-        mYear = in.readInt();
-        mGenre = in.readString();
-        mDesc = in.readString();
-    }
 
     public Book() {
         mName = "Book name";
@@ -79,6 +67,18 @@ public class Book implements Parcelable {
         this.mYear = year;
         this.mGenre = genre;
         this.mDesc = desc;
+    }
+
+    protected Book(Parcel in) {
+        _id = in.readLong();
+        mName = in.readString();
+        mISBN = in.readString();
+        mAuthor = in.readString();
+        mPublisher = in.readString();
+        mEdition = in.readString();
+        mYear = in.readInt();
+        mGenre = in.readString();
+        mDesc = in.readString();
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {
