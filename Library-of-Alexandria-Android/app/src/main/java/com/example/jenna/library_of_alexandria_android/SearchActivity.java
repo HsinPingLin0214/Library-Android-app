@@ -1,8 +1,11 @@
 package com.example.jenna.library_of_alexandria_android;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,15 +19,17 @@ import models.DatabaseHelper;
 import java.util.ArrayList;
 
 
-public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener {
 
     // Unique Identifier for receiving activity result
     public static final int ADD_BOOK_REQUEST = 1;
 
+    public SearchView mSearchView;
     private ListView mListView;
     private BookAdapter mAdapter;
     private ArrayList<Book> mBookList;
     private DatabaseHelper mDBHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,14 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present. getMenuInflater().inflate(R.menu.menu_main, menu);
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = menu.findItem(R.id.search);
+        mSearchView = (SearchView) searchItem.getActionView();
+        mSearchView.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+        mSearchView.setSubmitButtonEnabled(true);
+        mSearchView.setOnQueryTextListener(this);
+
         return true;
     }
 
@@ -66,9 +79,9 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -130,5 +143,16 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         Intent intent = new Intent(this, BookDetailsActivity.class);
         intent.putExtra("BookDetails", index);
         setResult(RESULT_OK, intent);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        mAdapter.getFilter().filter(newText);
+        return false;
     }
 }

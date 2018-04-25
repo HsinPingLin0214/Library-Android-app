@@ -35,8 +35,6 @@ public class BookDetailsActivity extends AppCompatActivity {
         // Get our database handler
         mDBHelper = new DatabaseHelper(getApplicationContext());
 
-
-
         Intent intent = getIntent();
 //        String index = intent.getParcelableExtra("BookDetails");
 //        String index = intent.getStringExtra("BookDetails");
@@ -65,6 +63,9 @@ public class BookDetailsActivity extends AppCompatActivity {
 
         TextView genreView = (TextView) findViewById(R.id.genreDisplayTextView);
         genreView.setText(mBook.toString());
+
+        TextView descView = (TextView) findViewById(R.id.descDisplayTextView);
+        descView.setText(mBook.toString());
     }
 
     private void setSupportActionBar(Toolbar toolbar) {
