@@ -127,8 +127,11 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-        String index = (String)adapter.getItemAtPosition(position);
-//        String name = (String)adapter.getItem(position);
+//        Book book = new mBookList.getId(position);
+//        String index = (String)adapter.getItemAtPosition(position);
+
+        //Using DBHelper Cursor set current book to display single book details
+        Book book = mDBHelper.displayBook(id);
 //        String isbn = "";
 //        String author = "" ;
 //        String publisher = "" ;
@@ -141,7 +144,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
         // Create new intent, pass information & finish
         Intent intent = new Intent(this, BookDetailsActivity.class);
-        intent.putExtra("BookDetails", index);
+        intent.putExtra("BookDetails", book);
         setResult(RESULT_OK, intent);
     }
 

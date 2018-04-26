@@ -21,9 +21,9 @@ public class BookAdapter extends BaseAdapter implements Filterable {
     private ArrayList<Book> mFilteredList;
     private BookFilter mFilter;
 
-    public BookAdapter(Context con, ArrayList<Book> booklist) {
+    public BookAdapter(Context con, ArrayList<Book> bookArrayList) {
         mCurrentContext = con;
-        mBookList = booklist;
+        mBookList = bookArrayList;
         mFilteredList = mBookList;
     }
 

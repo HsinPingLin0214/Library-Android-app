@@ -94,27 +94,52 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         addBook(new Book(4, "Clearing Emotional Clutter", "1-6086-8364-8", "Altman Donald", "New World Library", "562 UK", 2016, "Self-help book", "Clearing Emotional Clutter: Mindfulness Practices for Letting Go of What's Blocking Your Fulfillment and Transformation."));
     }
 
-//    public displayBook(int index) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        // Get the cursor from a database query
-//        Cursor cursor = db.rawQuery("SELECT * FROM CUSTOMER", null);
-//        // Move to first row
-//        cursor.moveToPosition(index);
-//        // Grab row column values based on column pattern
-//        long _id = Long.parseLong(cursor.getString(1));
-//        String name = cursor.getString(1);
-//        String isbn = cursor.getString(2);
-//        String author = cursor.getString(3);
-//        String publisher = cursor.getString(4);
-//        String edition = cursor.getString(5);
-//        int year = Integer.parseInt(cursor.getString(6));
-//        String genre = cursor.getString(7);
-//        String desc = cursor.getString(8);
-//
-//        Book newBook = new Book(_id, name, isbn, author, publisher, edition, year, genre, desc);
-//
-//        return newBook;
+
+//    /**
+//     * Return values for a single row with the specified id
+//     * @param id The unique id for the row o fetch
+//     * @return All column values are stored as properties in the ContentValues object
+//     */
+//    public ContentValues get(long id) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        if (db == null) {
+//            return null;
+//        }
+//        ContentValues row = new ContentValues();
+//        Cursor cur = db.rawQuery("select * from Book.TABLE_NAME where _id = ?", new String[] { String.valueOf(id) });
+//        if (cur.moveToNext()) {
+//            row.put("title", cur.getString(0));
+//            row.put("priority", cur.getInt(1));
+//        }
+//        cur.close();
+//        db.close();
+//        return row;
 //    }
+
+    public Book displayBook(long index) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        // Get the cursor from a database query
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Book.TABLE_NAME + " WHERE _id=index", null);
+        // Move to first row
+        cursor.moveToNext();
+
+        // Grab row column values based on column pattern
+
+        Book book = new Book(cursor.getLong(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4),
+                cursor.getString(5),
+                cursor.getInt(6),
+                cursor.getString(7),
+                cursor.getString(8));
+
+        cursor.close();
+        db.close();
+
+        return book;
+    }
 
 //    public displayBook get(long id) {
 //        SQLiteDatabase db = this.getReadableDatabase();

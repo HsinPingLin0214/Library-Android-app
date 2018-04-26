@@ -81,23 +81,6 @@ public class AddBookActivity extends AppCompatActivity implements
             default:
                 break;
         }
-//        // Run Validation before creating jedi object
-//        // Set Jedi to contain user input
-//        mNewBook = new Book();
-//        mNewBook.setmName(name);
-//        mNewBook.setmISBN(isbn);
-//        mNewBook.setmAuthor(author);
-//        mNewBook.setmPublisher(publisher);
-//        mNewBook.setmEdition(edition);
-//        mNewBook.setmYear(year);
-//        mNewBook.setmGenre(genre);
-//        mNewBook.setmDesc(desc);
-
-
-        // Create new intent and put in Book object
-//        Intent newIntent = new Intent(this, AddBookActivity.class);
-//        newIntent.putExtra("Book", String.valueOf(mNewBook));
-//        startActivity(newIntent);
     }
 
     public void createNewBook() {

@@ -35,37 +35,33 @@ public class BookDetailsActivity extends AppCompatActivity {
         // Get our database handler
         mDBHelper = new DatabaseHelper(getApplicationContext());
 
+        // Get book index and book detail
         Intent intent = getIntent();
-//        String index = intent.getParcelableExtra("BookDetails");
-//        String index = intent.getStringExtra("BookDetails");
-//        mBook = new Book(mDBHelper.getBook().values())
-
-        // To do: How to get book index and book detail on this screen?
-
         mBook = intent.getParcelableExtra("BookDetails");
+
         TextView nameView = (TextView) findViewById(R.id.nameDisplayTextView);
-        nameView.setText(mBook.toString());
+        nameView.setText(mBook.getmName().toString());
 
         TextView isbnView = (TextView) findViewById(R.id.isbnDisplayTextView);
-        isbnView.setText(mBook.toString());
+        isbnView.setText(mBook.getmISBN().toString());
 
         TextView authorView = (TextView) findViewById(R.id.authorDisplayTextView);
-        authorView.setText(mBook.toString());
+        authorView.setText(mBook.getmAuthor().toString());
 
         TextView publisherView = (TextView) findViewById(R.id.publisherDisplayTextView);
-        publisherView.setText(mBook.toString());
+        publisherView.setText(mBook.getmPublisher().toString());
 
         TextView editionView = (TextView) findViewById(R.id.editionDisplayTextView);
-        editionView.setText(mBook.toString());
+        editionView.setText(mBook.getmEdition().toString());
 
         TextView yearView = (TextView) findViewById(R.id.yearDisplayTextView);
-        yearView.setText(mBook.toString());
+//        yearView.setText(mBook.getmYear().toSting());
 
         TextView genreView = (TextView) findViewById(R.id.genreDisplayTextView);
-        genreView.setText(mBook.toString());
+        genreView.setText(mBook.getmGenre().toString());
 
         TextView descView = (TextView) findViewById(R.id.descDisplayTextView);
-        descView.setText(mBook.toString());
+        descView.setText(mBook.getmDesc().toString());
     }
 
     private void setSupportActionBar(Toolbar toolbar) {
